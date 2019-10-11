@@ -10,6 +10,7 @@ export default function Login({ navigation }) {
   const [techs, setTechs] = useState('');
 
   useEffect(() => {
+
     AsyncStorage.getItem('user').then(user => {
       if (user) {
         navigation.navigate('List');
@@ -22,8 +23,6 @@ export default function Login({ navigation }) {
       email
     })
 
-    
-
     const { _id } = response.data;
 
     await AsyncStorage.setItem('user', _id);
@@ -33,7 +32,7 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
+    <KeyboardAvoidingView  behavior="padding" style={styles.container}>
       <Image source={logo} />
 
       <View style={styles.form}>

@@ -7,6 +7,7 @@ import api from '../services/api';
 function SpotList({ tech, navigation }) {
   const [spots, setSpots] = useState([]);
 
+
   useEffect(() => {
     async function loadSpots() {
       const response = await api.get('/spots', {
@@ -14,9 +15,12 @@ function SpotList({ tech, navigation }) {
       })
 
       setSpots(response.data);
+      console.log(response.data)
+     
     }
 
     loadSpots();
+  
   }, []);
 
   function handleNavigate(id) {
@@ -32,10 +36,9 @@ function SpotList({ tech, navigation }) {
         data={spots}
         keyExtractor={spot => spot._id}
         horizontal
-        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <View style={styles.listItem}>
-            <Image style={styles.thumbnail} source={{ uri: item.thumbnail_url }} />
+            <Image style={styles.thumbnail} source={{ uri: "http://192.168.15.14:3333/files/rocketseat-1570756666043.png" }} />
             <Text style={styles.company}>{item.company}</Text>
             <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>
             <TouchableOpacity onPress={() => handleNavigate(item._id)} style={styles.button}>

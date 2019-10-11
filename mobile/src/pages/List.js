@@ -11,7 +11,7 @@ export default function List() {
 
   useEffect(() => {
     AsyncStorage.getItem('user').then(user_id => {
-      const socket = socketio('http://192.168.15.14:3333', {
+      const socket = socketio('http://localhost:3333', {
         query: { user_id }
       })
 
@@ -24,8 +24,11 @@ export default function List() {
   useEffect(() => {
     AsyncStorage.getItem('techs').then(storagedTechs => {
       const techsArray = storagedTechs.split(',').map(tech => tech.trim());
+      
 
       setTechs(techsArray);
+     
+      
     })
   }, []);
 
@@ -33,7 +36,7 @@ export default function List() {
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo} />
 
-      <ScrollView>
+      <ScrollView >
         {techs.map(tech => <SpotList key={tech} tech={tech} />)}
       </ScrollView>
     </SafeAreaView>
@@ -49,6 +52,6 @@ const styles = StyleSheet.create({
     height: 32,
     resizeMode: "contain",
     alignSelf: 'center',
-    marginTop: 10
+    marginTop: 30
   },
 });
