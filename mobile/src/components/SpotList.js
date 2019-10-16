@@ -15,8 +15,6 @@ function SpotList({ tech, navigation }) {
       })
 
       setSpots(response.data);
-      console.log(response.data)
-     
     }
 
     loadSpots();
@@ -38,7 +36,7 @@ function SpotList({ tech, navigation }) {
         horizontal
         renderItem={({ item }) => (
           <View style={styles.listItem}>
-            <Image style={styles.thumbnail} source={{ uri: "http://192.168.15.14:3333/files/rocketseat-1570756666043.png" }} />
+            <Image style={styles.thumbnail} source={{ uri: item.thumbnail_url }} />
             <Text style={styles.company}>{item.company}</Text>
             <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>
             <TouchableOpacity onPress={() => handleNavigate(item._id)} style={styles.button}>
